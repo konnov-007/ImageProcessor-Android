@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ImageProcessor</string>
+
+    <!--activity_main.xml-->
+    <string name="image_btn_content_description">image button</string>
+    <string name="rotate">rotate</string>
+    <string name="invert_colors">invert colors</string>
+    <string name="mirror_image">mirror image</string>
 </resources>
