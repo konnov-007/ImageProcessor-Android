@@ -11,4 +11,6 @@
     <string name="select_action">Select action</string>
     <string name="pic_from_gallery">Choose a picture from gallery</string>
     <string name="capture_from_camera">Capture a photo from camera</string>
+    <string name="permissions_required">Permissions are required for this app</string>
+    <string name="mandatory_permissions_warning">You need to give some mandatory permissions to continue. Do you want to go to app settings?</string>
 </resources>

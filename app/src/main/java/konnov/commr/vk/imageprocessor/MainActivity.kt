@@ -13,12 +13,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        checkRuntimePermissions()
+
         input_image_button.setOnClickListener {
             showPictureDialog()
         }
     }
 
-    //Called when user selects image or takes a picture with camera
+    /**
+     * Called when user selects image or takes a picture with camera
+     */
     public override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(data == null) {
@@ -35,6 +39,14 @@ class MainActivity : AppCompatActivity() {
                 input_image_button!!.setImageBitmap(picture)
             }
         }
+    }
+
+    /**
+     * Called when user accepts/denies permissions
+     */
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        permissionsResult(requestCode, permissions, grantResults)
     }
 
 }
