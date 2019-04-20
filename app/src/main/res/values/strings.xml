@@ -6,4 +6,9 @@
     <string name="rotate">rotate</string>
     <string name="invert_colors">invert colors</string>
     <string name="mirror_image">mirror image</string>
+
+    <!--MainActivityExt.kt-->
+    <string name="select_action">Select action</string>
+    <string name="pic_from_gallery">Choose a picture from gallery</string>
+    <string name="capture_from_camera">Capture a photo from camera</string>
 </resources>
