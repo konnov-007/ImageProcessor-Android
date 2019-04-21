@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="screen_edge_margin">20dp</dimen>
+    <dimen name="max_image_size">300dp</dimen>
+    <dimen name="min_image_size">200dp</dimen>
 </resources>

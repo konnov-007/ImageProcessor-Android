@@ -12,9 +12,13 @@ class TransformImage(
 ) : UseCase<TransformImage.RequestValues, TransformImage.ResponseValue>() {
 
     override fun executeUseCase(requestValues: RequestValues?) {
-        val resultBitmap = bitmapProcessor.transformBitmap(requestValues!!.bitmap, requestValues.transformOption) //TODO do this in rx java in background thread
-        val responseValues = ResponseValue(resultBitmap!!)
-        useCaseCallback!!.onSuccess(responseValues) //todo add calling onError if something went wrong
+        val resultBitmap = bitmapProcessor.transformBitmap(requestValues!!.bitmap, requestValues.transformOption)
+        if(resultBitmap == null) {
+            useCaseCallback!!.onError()
+        } else {
+            val responseValues = ResponseValue(resultBitmap!!)
+            useCaseCallback!!.onSuccess(responseValues)
+        }
     }
 
     class RequestValues(val bitmap: Bitmap, val transformOption: Int) : UseCase.RequestValues

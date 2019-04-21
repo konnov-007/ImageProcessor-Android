@@ -3,15 +3,25 @@ package konnov.commr.vk.imageprocessor.screen
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import konnov.commr.vk.imageprocessor.R
+import konnov.commr.vk.bitmapprocessor.INVERT
+import konnov.commr.vk.bitmapprocessor.MIRROR
+import konnov.commr.vk.bitmapprocessor.ROTATE
 import konnov.commr.vk.imageprocessor.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var mainViewModel: MainViewModel
+
+    private lateinit var resultImagesAdapter: ResultImagesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,20 +35,38 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         rotate_btn.setOnClickListener(this)
         invert_colors_btn.setOnClickListener(this)
         mirror_btn.setOnClickListener(this)
+        resultImagesAdapter = ResultImagesAdapter()
+        val linearLayoutManager = LinearLayoutManager(this)
+        results_rv.layoutManager = linearLayoutManager
+        results_rv.adapter = resultImagesAdapter
+
+        mainViewModel = obtainViewModel()
+        mainViewModel.liveData.observe(this, Observer<ViewState> { response -> updateViewState(response) })
     }
 
     override fun onClick(v: View?) {
         when(v) {
             input_image_button -> showPictureDialog()
             rotate_btn -> {
-                showMessage("Not implemented")
+                val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
+                mainViewModel.transformImage(sourceBitmap, ROTATE)
             }
             invert_colors_btn -> {
-                showMessage("Not implemented")
+                val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
+                mainViewModel.transformImage(sourceBitmap, INVERT)
             }
             mirror_btn -> {
-                showMessage("Not implemented")
+                val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
+                mainViewModel.transformImage(sourceBitmap, MIRROR)
             }
+        }
+    }
+
+
+    private fun updateViewState(state: ViewState) {
+        when (state) {
+            is ViewStateSuccess -> resultImagesAdapter.addBitmap(state.resultBitmap)
+            is ViewStateEmpty -> showMessage(resources.getString(state.message))
         }
     }
 
@@ -70,5 +98,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                             permissions: Array<String>, grantResults: IntArray) {
         permissionsResult(requestCode, permissions, grantResults)
     }
+
+    private fun obtainViewModel(): MainViewModel = obtainViewModel(MainViewModel::class.java)
 
 }
