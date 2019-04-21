@@ -1,22 +1,38 @@
-package konnov.commr.vk.imageprocessor
+package konnov.commr.vk.imageprocessor.screen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
+import konnov.commr.vk.imageprocessor.*
+import konnov.commr.vk.imageprocessor.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        checkRuntimePermissions()
+        initUI()
+    }
 
-        input_image_button.setOnClickListener {
-            showPictureDialog()
+    private fun initUI(){
+        checkRuntimePermissions()
+        input_image_button.setOnClickListener(this)
+        rotate_btn.setOnClickListener(this)
+        invert_colors_btn.setOnClickListener(this)
+        mirror_btn.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        when(v) {
+            input_image_button -> showPictureDialog()
+            rotate_btn -> showMessage("Not implemented")
+            invert_colors_btn -> showMessage("Not Implemented")
+            mirror_btn -> showMessage("Not implemented")
         }
     }
 
@@ -35,8 +51,8 @@ class MainActivity : AppCompatActivity() {
                 input_image_button!!.setImageBitmap(bitmap)
             }
             CAMERA -> {
-                val picture = data.extras!!.get("data") as Bitmap
-                input_image_button!!.setImageBitmap(picture)
+                val thumbnail = data.extras!!.get("data") as Bitmap //here we only get a thumbnail of a picture https://stackoverflow.com/questions/36662676/camera-image-is-too-small
+                input_image_button!!.setImageBitmap(thumbnail)
             }
         }
     }

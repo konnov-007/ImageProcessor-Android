@@ -1,4 +1,4 @@
-package konnov.commr.vk.imageprocessor
+package konnov.commr.vk.imageprocessor.util
 /**
  * All the showing select image dialog logic and asking permissions logic is here
  */
@@ -13,7 +13,9 @@ import android.provider.MediaStore
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.content.ComponentName
-
+import com.google.android.material.snackbar.Snackbar
+import konnov.commr.vk.imageprocessor.R
+import konnov.commr.vk.imageprocessor.screen.MainActivity
 
 
 const val GALLERY = 1
@@ -44,7 +46,9 @@ private fun MainActivity.checkAndRequestPermissions(): Boolean {
     }
 
     if (permissionsToRequest.isNotEmpty()) {
-        ActivityCompat.requestPermissions(this, permissionsToRequest.toTypedArray(), REQUEST_ID_MULTIPLE_PERMISSIONS)
+        ActivityCompat.requestPermissions(this, permissionsToRequest.toTypedArray(),
+            REQUEST_ID_MULTIPLE_PERMISSIONS
+        )
         return false
     }
     return true
@@ -83,7 +87,7 @@ private fun MainActivity.startSettings(){
 
 
 fun MainActivity.permissionsResult(requestCode: Int,
-                                        permissions: Array<String>, grantResults: IntArray){
+                                   permissions: Array<String>, grantResults: IntArray){
     when (requestCode) {
         REQUEST_ID_MULTIPLE_PERMISSIONS -> {
             val permsMap = HashMap<String, Int>()
@@ -159,4 +163,9 @@ private fun MainActivity.choosePhotoFromGallery() {
 private fun MainActivity.takePhotoFromCamera() {
     val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
     startActivityForResult(intent, CAMERA)
+}
+
+
+fun MainActivity.showMessage(message : String?){
+    Snackbar.make(findViewById(android.R.id.content), message!!, Snackbar.LENGTH_LONG).show()
 }
