@@ -1,4 +1,4 @@
-package konnov.commr.vk.imageprocessor.processor
+package konnov.commr.vk.bitmapprocessor
 
 import android.graphics.Bitmap
 import android.graphics.Canvas

@@ -4,7 +4,7 @@ import konnov.commr.vk.imageprocessor.data.source.ImageRepository
 import konnov.commr.vk.imageprocessor.domain.usecase.GetImage
 import konnov.commr.vk.imageprocessor.domain.usecase.SaveImage
 import konnov.commr.vk.imageprocessor.domain.usecase.TransformImage
-import konnov.commr.vk.imageprocessor.processor.BitmapProcessor
+import konnov.commr.vk.bitmapprocessor.BitmapProcessor
 
 object Injection {
 

@@ -2,7 +2,7 @@ package konnov.commr.vk.imageprocessor.domain.usecase
 
 import android.graphics.Bitmap
 import konnov.commr.vk.imageprocessor.UseCase
-import konnov.commr.vk.imageprocessor.processor.BitmapProcessor
+import konnov.commr.vk.bitmapprocessor.BitmapProcessor
 
 /**
  * Use case for transforming image (inverting colors, rotating, mirroring)
