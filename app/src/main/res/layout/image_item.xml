@@ -2,19 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="match_parent">
 
     <ImageButton
             android:id="@+id/image_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:maxHeight="@dimen/max_image_size"
             android:maxWidth="@dimen/max_image_size"
-            android:minWidth="@dimen/min_image_size"
-            android:minHeight="@dimen/min_image_size"
             android:contentDescription="@string/image_btn_content_description"
             android:layout_gravity="center_horizontal"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true"/>
+            android:adjustViewBounds="true"
+            android:background="#00FFFFFF"/>
 
 </LinearLayout>

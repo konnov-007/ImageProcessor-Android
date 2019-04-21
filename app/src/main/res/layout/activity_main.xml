@@ -27,12 +27,13 @@
 
             <ImageButton
                     android:id="@+id/input_image_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:contentDescription="@string/image_btn_content_description"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/select_image"/>
+                    android:src="@drawable/select_image"
+                    android:background="#00FFFFFF"/>
         </LinearLayout>
 
 
