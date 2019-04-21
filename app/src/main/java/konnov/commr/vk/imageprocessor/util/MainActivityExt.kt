@@ -13,7 +13,6 @@ import android.provider.MediaStore
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.content.ComponentName
-import com.google.android.material.snackbar.Snackbar
 import konnov.commr.vk.imageprocessor.R
 import konnov.commr.vk.imageprocessor.screen.MainActivity
 
@@ -23,7 +22,9 @@ const val CAMERA = 2
 
 const val REQUEST_ID_MULTIPLE_PERMISSIONS = 1
 
-//Here we write all the permissions the app requires
+/**
+ * Here we write all the permissions the app requires
+ */
 val requiredPermissions = arrayOf(Manifest.permission.CAMERA,
     Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
@@ -165,7 +166,3 @@ private fun MainActivity.takePhotoFromCamera() {
     startActivityForResult(intent, CAMERA)
 }
 
-
-fun MainActivity.showMessage(message : String?){
-    Snackbar.make(findViewById(android.R.id.content), message!!, Snackbar.LENGTH_LONG).show()
-}

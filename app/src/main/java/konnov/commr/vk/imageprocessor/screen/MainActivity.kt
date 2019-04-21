@@ -6,7 +6,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import konnov.commr.vk.imageprocessor.*
+import konnov.commr.vk.imageprocessor.R
 import konnov.commr.vk.imageprocessor.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -30,9 +30,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v) {
             input_image_button -> showPictureDialog()
-            rotate_btn -> showMessage("Not implemented")
-            invert_colors_btn -> showMessage("Not Implemented")
-            mirror_btn -> showMessage("Not implemented")
+            rotate_btn -> {
+                showMessage("Not implemented")
+            }
+            invert_colors_btn -> {
+                showMessage("Not implemented")
+            }
+            mirror_btn -> {
+                showMessage("Not implemented")
+            }
         }
     }
 
