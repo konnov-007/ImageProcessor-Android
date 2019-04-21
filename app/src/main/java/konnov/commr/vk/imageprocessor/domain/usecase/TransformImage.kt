@@ -1,5 +1,6 @@
 package konnov.commr.vk.imageprocessor.domain.usecase
 
+import android.graphics.Bitmap
 import konnov.commr.vk.imageprocessor.UseCase
 import konnov.commr.vk.imageprocessor.processor.BitmapProcessor
 
@@ -11,14 +12,12 @@ class TransformImage(
 ) : UseCase<TransformImage.RequestValues, TransformImage.ResponseValue>() {
 
     override fun executeUseCase(requestValues: RequestValues?) {
-        //TODO implement
-        }
-
-    class RequestValues : UseCase.RequestValues {
-        //TODO implement
+        val resultBitmap = bitmapProcessor.transformBitmap(requestValues!!.bitmap, requestValues.transformOption) //TODO do this in rx java in background thread
+        val responseValues = ResponseValue(resultBitmap!!)
+        useCaseCallback!!.onSuccess(responseValues) //todo add calling onError if something went wrong
     }
 
-    class ResponseValue() : UseCase.ResponseValue {
-        //TODO implement
-    }
+    class RequestValues(val bitmap: Bitmap, val transformOption: Int) : UseCase.RequestValues
+
+    class ResponseValue(val resultBitmap: Bitmap) : UseCase.ResponseValue
 }

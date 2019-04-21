@@ -17,10 +17,11 @@ class ViewModelFactory private constructor(
         with(modelClass) {
             when {
                 isAssignableFrom(MainViewModel::class.java) -> {
+                    val useCaseHandler = Injection.provideUseCaseHandler()
                     val getImage = Injection.provideGetImage(imageRepository)
                     val saveImage = Injection.provideSaveImage(imageRepository)
                     val transformImage = Injection.provideTransformImage()
-                    MainViewModel(getImage, saveImage, transformImage)
+                    MainViewModel(useCaseHandler, getImage, saveImage, transformImage)
                 }
                 else ->
                     throw IllegalArgumentException("Unknown class: ${modelClass.name}")

@@ -12,6 +12,10 @@ object Injection {
         return ImageRepository
     }
 
+    fun provideUseCaseHandler(): UseCaseHandler {
+        return UseCaseHandler.instance
+    }
+
     fun provideGetImage(repository: ImageRepository): GetImage{
         return GetImage(repository)
     }
