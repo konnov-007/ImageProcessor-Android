@@ -48,16 +48,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when(v) {
             input_image_button -> showPictureDialog()
             rotate_btn -> {
-                val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
-                mainViewModel.transformImage(sourceBitmap, ROTATE)
+                if(imageIsSet(input_image_button.drawable)) {
+                    val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
+                    mainViewModel.transformImage(sourceBitmap, ROTATE)
+                } else {
+                    showPictureDialog()
+                }
             }
             invert_colors_btn -> {
-                val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
-                mainViewModel.transformImage(sourceBitmap, INVERT)
+               if(imageIsSet(input_image_button.drawable)) {
+                   val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
+                   mainViewModel.transformImage(sourceBitmap, INVERT)
+               } else {
+                   showPictureDialog()
+               }
             }
             mirror_btn -> {
-                val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
-                mainViewModel.transformImage(sourceBitmap, MIRROR)
+                if(imageIsSet(input_image_button.drawable)) {
+                    val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
+                    mainViewModel.transformImage(sourceBitmap, MIRROR)
+                } else {
+                    showPictureDialog()
+                }
             }
         }
     }
@@ -82,10 +94,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             GALLERY -> {
                 val contentURI = data.data
                 val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
+                removeBackground(input_image_button) //removing the "click here to upload" background
                 input_image_button!!.setImageBitmap(bitmap)
             }
             CAMERA -> {
                 val thumbnail = data.extras!!.get("data") as Bitmap //here we only get a thumbnail of a picture https://stackoverflow.com/questions/36662676/camera-image-is-too-small
+                removeBackground(input_image_button)
                 input_image_button!!.setImageBitmap(thumbnail)
             }
         }

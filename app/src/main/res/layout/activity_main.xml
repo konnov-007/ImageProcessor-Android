@@ -32,8 +32,7 @@
                     android:contentDescription="@string/image_btn_content_description"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/select_image"
-                    android:background="#00FFFFFF"/>
+                    android:background="@drawable/select_image"/>
         </LinearLayout>
 
 

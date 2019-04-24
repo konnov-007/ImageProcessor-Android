@@ -13,6 +13,8 @@ import android.provider.MediaStore
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.content.ComponentName
+import android.graphics.drawable.ColorDrawable
+import android.view.View
 import konnov.commr.vk.imageprocessor.R
 import konnov.commr.vk.imageprocessor.screen.MainActivity
 
@@ -166,3 +168,13 @@ private fun MainActivity.takePhotoFromCamera() {
     startActivityForResult(intent, CAMERA)
 }
 
+
+fun MainActivity.removeBackground(view: View) {
+    if (view.background != transparentBackground) {
+        view.background = transparentBackground
+    }
+
+}
+
+private val MainActivity.transparentBackground: ColorDrawable
+    get() = ColorDrawable(ContextCompat.getColor(this, R.color.transparent))
