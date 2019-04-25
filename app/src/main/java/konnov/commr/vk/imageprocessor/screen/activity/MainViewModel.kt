@@ -20,20 +20,32 @@ class MainViewModel(
     private val transformImage: TransformImage
 ): ViewModel() {
 
-    val liveData = MutableLiveData<ViewState>()
+    val resultImageLiveData = MutableLiveData<ViewState>()
+
+    val sourceImageLiveData = MutableLiveData<ViewState>()
 
     fun transformImage(bitmap: Bitmap, transformOption: Int) {
         val requestValue = TransformImage.RequestValues(bitmap, transformOption)
         useCaseHandler.execute(transformImage, requestValue,
             object : UseCase.UseCaseCallback<TransformImage.ResponseValue> {
                 override fun onSuccess(response: TransformImage.ResponseValue) {
-                    liveData.value = ViewStateSuccess(response.resultBitmap)
+                    resultImageLiveData.value = ViewStateSuccess(response.resultBitmap)
                 }
 
                 override fun onError() {
-                    liveData.value = ViewStateEmpty(R.string.error)
+                    resultImageLiveData.value = ViewStateEmpty(R.string.error)
                 }
             })
+    }
+
+    /**
+     * Method for communicating between
+     * [konnov.commr.vk.imageprocessor.screen.selectpicturedialog.SelectPictureDialogFragment]
+     * and
+     * [MainActivity]
+     */
+    fun imageSelected(bitmap: Bitmap) {
+        sourceImageLiveData.value = ViewStateSuccess(bitmap)
     }
 
 }

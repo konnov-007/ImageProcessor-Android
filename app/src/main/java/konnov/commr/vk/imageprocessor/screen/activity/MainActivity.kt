@@ -1,11 +1,9 @@
 package konnov.commr.vk.imageprocessor.screen.activity
 
 import androidx.appcompat.app.AppCompatActivity
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +12,7 @@ import konnov.commr.vk.bitmapprocessor.INVERT
 import konnov.commr.vk.bitmapprocessor.MIRROR
 import konnov.commr.vk.bitmapprocessor.ROTATE
 import konnov.commr.vk.imageprocessor.screen.itemclickdialog.ItemClickedDialogFragment
+import konnov.commr.vk.imageprocessor.screen.selectpicturedialog.SelectPictureDialogFragment
 import konnov.commr.vk.imageprocessor.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -43,18 +42,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         results_rv.adapter = resultImagesAdapter
 
         mainViewModel = obtainViewModel()
-        mainViewModel.liveData.observe(this, Observer<ViewState> { response -> updateViewState(response) })
+        mainViewModel.sourceImageLiveData.observe(this, Observer<ViewState> { response -> updateSelectedPicture(response) })
+        mainViewModel.resultImageLiveData.observe(this, Observer<ViewState> { response -> updateResultAdapter(response) })
     }
 
     override fun onClick(v: View?) {
         when(v) {
-            input_image_button -> showPictureDialog()
+            input_image_button -> showDialogFragment(SelectPictureDialogFragment(mainViewModel))
             rotate_btn -> {
                 if(imageIsSet(input_image_button.drawable)) {
                     val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
                     mainViewModel.transformImage(sourceBitmap, ROTATE)
                 } else {
-                    showPictureDialog()
+                    showDialogFragment(SelectPictureDialogFragment(mainViewModel))
                 }
             }
             invert_colors_btn -> {
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                    val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
                    mainViewModel.transformImage(sourceBitmap, INVERT)
                } else {
-                   showPictureDialog()
+                   showDialogFragment(SelectPictureDialogFragment(mainViewModel))
                }
             }
             mirror_btn -> {
@@ -70,17 +70,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
                     mainViewModel.transformImage(sourceBitmap, MIRROR)
                 } else {
-                    showPictureDialog()
+                    showDialogFragment(SelectPictureDialogFragment(mainViewModel))
                 }
             }
         }
     }
 
 
-    private fun updateViewState(state: ViewState) {
+    private fun updateResultAdapter(state: ViewState) {
         when (state) {
             is ViewStateSuccess -> resultImagesAdapter.addBitmap(state.resultBitmap)
             is ViewStateEmpty -> showMessage(resources.getString(state.message))
+        }
+    }
+
+    private fun updateSelectedPicture(state: ViewState) {
+        when (state) {
+            is ViewStateSuccess -> {
+                removeBackground(input_image_button)
+                input_image_button.setImageBitmap(state.resultBitmap)
+            }
+            is ViewStateEmpty -> showMessage(resources.getString(state.message)) //this occur if getting image from URL fails
         }
     }
 
@@ -92,29 +102,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             showDialogFragment(ItemClickedDialogFragment(itemPosition, bitmap))
         }
 
-    }
-
-    /**
-     * Called when user selects image or takes a picture with camera
-     */
-    public override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(data == null) {
-            return
-        }
-        when (requestCode) {
-            GALLERY -> {
-                val contentURI = data.data
-                val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
-                removeBackground(input_image_button) //removing the "click here to upload" background
-                input_image_button!!.setImageBitmap(bitmap)
-            }
-            CAMERA -> {
-                val thumbnail = data.extras!!.get("data") as Bitmap //here we only get a thumbnail of a picture https://stackoverflow.com/questions/36662676/camera-image-is-too-small
-                removeBackground(input_image_button)
-                input_image_button!!.setImageBitmap(thumbnail)
-            }
-        }
     }
 
     /**

@@ -4,12 +4,10 @@ package konnov.commr.vk.imageprocessor.util
  */
 import android.Manifest
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.provider.MediaStore
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.content.ComponentName
@@ -18,9 +16,6 @@ import android.view.View
 import konnov.commr.vk.imageprocessor.R
 import konnov.commr.vk.imageprocessor.screen.activity.MainActivity
 
-
-const val GALLERY = 1
-const val CAMERA = 2
 
 const val REQUEST_ID_MULTIPLE_PERMISSIONS = 1
 
@@ -137,34 +132,6 @@ private fun shouldShowRequestPermissionRationale(activity: Activity) : Boolean {
         }
     }
     return false
-}
-
-
-fun MainActivity.showPictureDialog(){//TODO rebuild it into a dialog fragment like [ItemClickDialogFragment]
-    val pictureDialog = AlertDialog.Builder(this)
-    pictureDialog.setTitle(resources.getString(R.string.select_action))
-    val pictureDialogItems = arrayOf(resources.getString(R.string.pic_from_gallery),
-        resources.getString(R.string.capture_from_camera))
-    pictureDialog.setItems(pictureDialogItems
-    ) { dialog, which ->
-        when (which) {
-            0 -> choosePhotoFromGallery()
-            1 -> takePhotoFromCamera()
-        }
-    }
-    pictureDialog.show()
-}
-
-private fun MainActivity.choosePhotoFromGallery() {
-    val galleryIntent = Intent(
-        Intent.ACTION_PICK,
-        MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-    startActivityForResult(galleryIntent, GALLERY)
-}
-
-private fun MainActivity.takePhotoFromCamera() {
-    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-    startActivityForResult(intent, CAMERA)
 }
 
 
