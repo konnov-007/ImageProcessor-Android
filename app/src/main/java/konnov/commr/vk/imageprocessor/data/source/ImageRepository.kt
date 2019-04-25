@@ -5,5 +5,5 @@ package konnov.commr.vk.imageprocessor.data.source
  */
 
 object ImageRepository {
-//TODO implement
+//TODO this class will be later used to fetch image from URL and for persisting images in the storage
 }

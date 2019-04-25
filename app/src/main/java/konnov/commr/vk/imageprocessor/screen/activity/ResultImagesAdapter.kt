@@ -1,6 +1,5 @@
 package konnov.commr.vk.imageprocessor.screen.activity
 
-import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

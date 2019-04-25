@@ -20,7 +20,6 @@ import konnov.commr.vk.imageprocessor.util.takePhotoFromCamera
 import kotlinx.android.synthetic.main.dialog_select_picture.*
 
 class SelectPictureDialogFragment(private val mainViewModel: MainViewModel): DialogFragment() {
-//mainViewModel is going to be used later when we will fetch image from URL
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.dialog_select_picture, container, false)

@@ -3,9 +3,9 @@ package konnov.commr.vk.imageprocessor.domain.usecase
 import konnov.commr.vk.imageprocessor.UseCase
 import konnov.commr.vk.imageprocessor.data.source.ImageRepository
 
-class GetImage(
+class FetchImage(
     private val imageRepository: ImageRepository
-): UseCase<GetImage.RequestValues, GetImage.ResponseValue>() {
+): UseCase<FetchImage.RequestValues, FetchImage.ResponseValue>() {
     override fun executeUseCase(requestValues: RequestValues?) {
         //TODO implement
     }
