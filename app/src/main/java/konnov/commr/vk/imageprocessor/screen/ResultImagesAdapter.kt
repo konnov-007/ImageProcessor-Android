@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import konnov.commr.vk.imageprocessor.R
 import kotlinx.android.synthetic.main.image_item.view.*
 
-class ResultImagesAdapter(private val resultBitmaps: ArrayList<Bitmap> = ArrayList()) :
+class ResultImagesAdapter(private val resultBitmaps: ArrayList<Bitmap> = ArrayList(),
+                          private val itemListener: AdapterItemListener) :
     RecyclerView.Adapter<ResultImagesAdapter.ResultImageViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -24,6 +25,9 @@ class ResultImagesAdapter(private val resultBitmaps: ArrayList<Bitmap> = ArrayLi
 
     override fun onBindViewHolder(resultImageViewHolder: ResultImageViewHolder, position: Int) {
         resultImageViewHolder.image.setImageBitmap(resultBitmaps[position])
+        resultImageViewHolder.image.setOnClickListener {
+            itemListener.onItemClick(position, resultBitmaps[position])
+        }
     }
 
     class ResultImageViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {

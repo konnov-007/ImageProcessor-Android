@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         rotate_btn.setOnClickListener(this)
         invert_colors_btn.setOnClickListener(this)
         mirror_btn.setOnClickListener(this)
-        resultImagesAdapter = ResultImagesAdapter()
+        resultImagesAdapter = ResultImagesAdapter(itemListener = adapterItemListener)
         val linearLayoutManager = LinearLayoutManager(this)
         results_rv.layoutManager = linearLayoutManager
         results_rv.adapter = resultImagesAdapter
@@ -80,6 +80,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             is ViewStateSuccess -> resultImagesAdapter.addBitmap(state.resultBitmap)
             is ViewStateEmpty -> showMessage(resources.getString(state.message))
         }
+    }
+
+    /**
+     * Listening for the clicks in ResultImagesAdapter
+     */
+    private val adapterItemListener = object : AdapterItemListener {
+        override fun onItemClick(itemPosition: Int, bitmap: Bitmap) {
+            showMessage("clicked item $itemPosition")
+        }
+
     }
 
     /**
