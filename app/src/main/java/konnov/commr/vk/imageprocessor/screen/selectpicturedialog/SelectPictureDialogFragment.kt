@@ -62,7 +62,7 @@ class SelectPictureDialogFragment(private val mainViewModel: MainViewModel): Dia
             }
 
             CAMERA -> {
-                val thumbnail = data.extras!!.get("data") as Bitmap //here we only get a thumbnail of a picture https://stackoverflow.com/questions/36662676/camera-image-is-too-small
+                val thumbnail = data.extras?.get("data") as Bitmap //here we only get a thumbnail of a picture https://stackoverflow.com/questions/36662676/camera-image-is-too-small
                 mainViewModel.imageSelected(thumbnail)
                 dismiss()
             }
