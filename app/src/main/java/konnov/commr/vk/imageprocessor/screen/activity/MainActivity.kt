@@ -10,7 +10,7 @@ import konnov.commr.vk.imageprocessor.R
 import konnov.commr.vk.bitmapprocessor.INVERT
 import konnov.commr.vk.bitmapprocessor.MIRROR
 import konnov.commr.vk.bitmapprocessor.ROTATE
-import konnov.commr.vk.imageprocessor.domain.model.Image
+import konnov.commr.vk.imageprocessor.domain.entities.Image
 import konnov.commr.vk.imageprocessor.screen.dialogs.ItemClickedDialogFragment
 import konnov.commr.vk.imageprocessor.screen.dialogs.SelectPictureDialogFragment
 import konnov.commr.vk.imageprocessor.util.*

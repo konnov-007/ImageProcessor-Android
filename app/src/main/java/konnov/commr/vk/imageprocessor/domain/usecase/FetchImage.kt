@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import konnov.commr.vk.imageprocessor.UseCase
 import konnov.commr.vk.imageprocessor.data.source.ImageLoadedCallback
 import konnov.commr.vk.imageprocessor.data.source.ImageRepository
-import konnov.commr.vk.imageprocessor.domain.model.Image
+import konnov.commr.vk.imageprocessor.domain.entities.Image
 
 class FetchImage(
     private val imageRepository: ImageRepository

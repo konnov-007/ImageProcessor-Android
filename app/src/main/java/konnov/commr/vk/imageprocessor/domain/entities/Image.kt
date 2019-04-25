@@ -1,4 +1,4 @@
-package konnov.commr.vk.imageprocessor.domain.model
+package konnov.commr.vk.imageprocessor.domain.entities
 
 import android.graphics.Bitmap
 import java.util.*

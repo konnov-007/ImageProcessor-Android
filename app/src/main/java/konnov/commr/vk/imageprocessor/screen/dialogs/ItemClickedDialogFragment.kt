@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import konnov.commr.vk.imageprocessor.R
-import konnov.commr.vk.imageprocessor.domain.model.Image
+import konnov.commr.vk.imageprocessor.domain.entities.Image
 import konnov.commr.vk.imageprocessor.screen.activity.MainViewModel
 import kotlinx.android.synthetic.main.dialog_item_clicked.*
 

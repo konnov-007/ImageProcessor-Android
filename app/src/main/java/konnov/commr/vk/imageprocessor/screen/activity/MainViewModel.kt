@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import konnov.commr.vk.imageprocessor.R
 import konnov.commr.vk.imageprocessor.UseCase
 import konnov.commr.vk.imageprocessor.UseCaseHandler
-import konnov.commr.vk.imageprocessor.domain.model.Image
+import konnov.commr.vk.imageprocessor.domain.entities.Image
 import konnov.commr.vk.imageprocessor.domain.usecase.FetchImage
 import konnov.commr.vk.imageprocessor.domain.usecase.SaveImage
 import konnov.commr.vk.imageprocessor.domain.usecase.TransformImage

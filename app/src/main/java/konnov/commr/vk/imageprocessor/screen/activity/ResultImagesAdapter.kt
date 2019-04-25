@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import konnov.commr.vk.imageprocessor.R
-import konnov.commr.vk.imageprocessor.domain.model.Image
+import konnov.commr.vk.imageprocessor.domain.entities.Image
 import kotlinx.android.synthetic.main.image_item.view.*
 
 class ResultImagesAdapter(private var resultImages: ArrayList<Image> = ArrayList(),
