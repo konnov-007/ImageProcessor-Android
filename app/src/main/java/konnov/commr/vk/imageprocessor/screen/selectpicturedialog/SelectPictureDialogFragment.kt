@@ -26,6 +26,7 @@ class SelectPictureDialogFragment(private val mainViewModel: MainViewModel? = nu
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        retainInstance = true
         dialog?.window?.apply {
             requestFeature(Window.FEATURE_NO_TITLE)
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
