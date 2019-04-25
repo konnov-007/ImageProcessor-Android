@@ -1,7 +1,6 @@
 package konnov.commr.vk.imageprocessor.screen.activity
 
 import androidx.appcompat.app.AppCompatActivity
-import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.View
