@@ -30,7 +30,7 @@ class MainViewModel(
         useCaseHandler.execute(transformImage, requestValue,
             object : UseCase.UseCaseCallback<TransformImage.ResponseValue> {
                 override fun onSuccess(response: TransformImage.ResponseValue) {
-                    resultImages.add(0, Image(response.resultBitmap))
+                    resultImages.add(0, response.resultImage)
                     resultImageLiveData.value = ResultImageStateSuccess(resultImages)
                 }
 
