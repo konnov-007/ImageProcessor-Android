@@ -15,7 +15,7 @@
             android:supportsRtl="true"
             tools:ignore="GoogleAppIndexingWarning"
             android:theme="@style/AppTheme">
-        <activity android:name=".screen.activity.MainActivity">
+        <activity android:name=".screen.activity.MainActivity" android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
