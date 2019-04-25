@@ -1,6 +1,6 @@
 package konnov.commr.vk.imageprocessor.util
 /**
- * All the showing select image dialog logic and asking permissions logic is here
+ * All the asking permissions logic is here
  */
 import android.Manifest
 import android.app.Activity
