@@ -41,6 +41,18 @@ class MainViewModel(
     }
 
     fun fetchImage(url: String) {
+        val requestValue = FetchImage.RequestValues(url)
+        useCaseHandler.execute(fetchImage, requestValue,
+            object : UseCase.UseCaseCallback<FetchImage.ResponseValue> {
+                override fun onSuccess(response: FetchImage.ResponseValue) {
+                    sourceImageLiveData.value = ImageStateSuccess(response.resultImage.bitmap)
+                }
+
+                override fun onError() {
+                    sourceImageLiveData.value = ImageStateEmpty(R.string.error)
+                }
+
+            })
 
     }
 
