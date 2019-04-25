@@ -12,11 +12,10 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import konnov.commr.vk.imageprocessor.R
+import konnov.commr.vk.imageprocessor.screen.activity.MainActivity
 import konnov.commr.vk.imageprocessor.screen.activity.MainViewModel
-import konnov.commr.vk.imageprocessor.util.CAMERA
-import konnov.commr.vk.imageprocessor.util.GALLERY
-import konnov.commr.vk.imageprocessor.util.chooseFromGallery
-import konnov.commr.vk.imageprocessor.util.takePhotoFromCamera
+import konnov.commr.vk.imageprocessor.screen.inputURLFragment.InputURLDialogFragment
+import konnov.commr.vk.imageprocessor.util.*
 import kotlinx.android.synthetic.main.dialog_select_picture.*
 
 class SelectPictureDialogFragment(private val mainViewModel: MainViewModel? = null): DialogFragment() {
@@ -41,7 +40,7 @@ class SelectPictureDialogFragment(private val mainViewModel: MainViewModel? = nu
             }
 
             load_URL_tv.setOnClickListener {
-                //TODO fetch image from url using picasso
+                (activity as MainActivity).showDialogFragment(InputURLDialogFragment(mainViewModel))
             }
         }
     }

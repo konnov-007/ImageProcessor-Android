@@ -40,6 +40,10 @@ class MainViewModel(
             })
     }
 
+    fun fetchImage(url: String) {
+
+    }
+
     /**
      * Method for communicating between
      * [konnov.commr.vk.imageprocessor.screen.selectpicturedialog.SelectPictureDialogFragment]
