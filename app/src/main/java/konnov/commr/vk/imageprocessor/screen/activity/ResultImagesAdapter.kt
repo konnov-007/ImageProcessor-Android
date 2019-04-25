@@ -6,15 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import konnov.commr.vk.imageprocessor.R
+import konnov.commr.vk.imageprocessor.domain.model.Image
 import kotlinx.android.synthetic.main.image_item.view.*
 
-class ResultImagesAdapter(private val resultBitmaps: ArrayList<Bitmap> = ArrayList(),
+class ResultImagesAdapter(private var resultImages: ArrayList<Image> = ArrayList(),
                           private val itemListener: AdapterItemListener
 ) :
     RecyclerView.Adapter<ResultImagesAdapter.ResultImageViewHolder>() {
 
     override fun getItemCount(): Int {
-        return resultBitmaps.size
+        return resultImages.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, i: Int): ResultImageViewHolder {
@@ -25,9 +26,9 @@ class ResultImagesAdapter(private val resultBitmaps: ArrayList<Bitmap> = ArrayLi
     }
 
     override fun onBindViewHolder(resultImageViewHolder: ResultImageViewHolder, position: Int) {
-        resultImageViewHolder.image.setImageBitmap(resultBitmaps[position])
+        resultImageViewHolder.image.setImageBitmap(resultImages[position].bitmap)
         resultImageViewHolder.image.setOnClickListener {
-            itemListener.onItemClick(position, resultBitmaps[position])
+            itemListener.onItemClick(position, resultImages[position].bitmap)
         }
     }
 
@@ -36,8 +37,8 @@ class ResultImagesAdapter(private val resultBitmaps: ArrayList<Bitmap> = ArrayLi
         val image = itemView.image_item
     }
 
-    fun addBitmap(bitmap: Bitmap) {
-        resultBitmaps.add(0, bitmap)
+    fun updateList(images: ArrayList<Image>) {
+        resultImages = ArrayList(images)
         notifyDataSetChanged()
     }
 }

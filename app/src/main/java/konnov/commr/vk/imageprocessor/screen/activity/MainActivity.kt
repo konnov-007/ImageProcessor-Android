@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         results_rv.adapter = resultImagesAdapter
 
         mainViewModel = obtainViewModel()
-        mainViewModel.sourceImageLiveData.observe(this, Observer<ViewState> { response -> updateSelectedPicture(response) })
-        mainViewModel.resultImageLiveData.observe(this, Observer<ViewState> { response -> updateResultAdapter(response) })
+        mainViewModel.sourceImageLiveData.observe(this, Observer<SourceImageState> { response -> updateSelectedPicture(response) })
+        mainViewModel.resultImageLiveData.observe(this, Observer<ResultImageState> { response -> updateResultAdapter(response) })
     }
 
     override fun onClick(v: View?) {
@@ -77,20 +77,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    private fun updateResultAdapter(state: ViewState) {
+    private fun updateResultAdapter(state: ResultImageState) {
         when (state) {
-            is ViewStateSuccess -> resultImagesAdapter.addBitmap(state.resultBitmap)
-            is ViewStateEmpty -> showMessage(resources.getString(state.message))
+            is ResultImageStateSuccess -> resultImagesAdapter.updateList(state.resultImages)
+            is ResultImageStateEmpty -> showMessage(resources.getString(state.message))
         }
     }
 
-    private fun updateSelectedPicture(state: ViewState) {
+    private fun updateSelectedPicture(state: SourceImageState) {
         when (state) {
-            is ViewStateSuccess -> {
+            is ImageStateSuccess -> {
                 removeBackground(input_image_button)
                 input_image_button.setImageBitmap(state.resultBitmap)
             }
-            is ViewStateEmpty -> showMessage(resources.getString(state.message)) //this occur if getting image from URL fails
+            is ImageStateEmpty -> showMessage(resources.getString(state.message)) //this occur if getting image from URL fails
         }
     }
 
