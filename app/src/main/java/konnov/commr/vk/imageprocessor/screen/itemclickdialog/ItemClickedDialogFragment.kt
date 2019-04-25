@@ -1,6 +1,5 @@
 package konnov.commr.vk.imageprocessor.screen.itemclickdialog
 
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -14,7 +13,7 @@ import konnov.commr.vk.imageprocessor.domain.model.Image
 import konnov.commr.vk.imageprocessor.screen.activity.MainViewModel
 import kotlinx.android.synthetic.main.dialog_item_clicked.*
 
-class ItemClickedDialogFragment(val mainViewModel: MainViewModel, val image: Image): DialogFragment() {
+class ItemClickedDialogFragment(private val mainViewModel: MainViewModel? = null, val image: Image? = null): DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.dialog_item_clicked, container, false)
@@ -27,12 +26,12 @@ class ItemClickedDialogFragment(val mainViewModel: MainViewModel, val image: Ima
             attributes?.windowAnimations = R.style.DialogAnimation
 
             reuse_tv.setOnClickListener{
-                mainViewModel.imageSelected(image.bitmap)
+                mainViewModel?.imageSelected(image!!.bitmap)
                 dismiss()
             }
 
             delete_tv.setOnClickListener {
-                mainViewModel.imageDeleted(image)
+                mainViewModel?.imageDeleted(image!!)
                 dismiss()
             }
         }

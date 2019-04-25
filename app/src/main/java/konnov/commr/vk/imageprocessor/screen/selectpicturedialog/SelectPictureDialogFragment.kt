@@ -19,7 +19,7 @@ import konnov.commr.vk.imageprocessor.util.chooseFromGallery
 import konnov.commr.vk.imageprocessor.util.takePhotoFromCamera
 import kotlinx.android.synthetic.main.dialog_select_picture.*
 
-class SelectPictureDialogFragment(private val mainViewModel: MainViewModel): DialogFragment() {
+class SelectPictureDialogFragment(private val mainViewModel: MainViewModel? = null): DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.dialog_select_picture, container, false)
@@ -57,13 +57,13 @@ class SelectPictureDialogFragment(private val mainViewModel: MainViewModel): Dia
             GALLERY -> {
                 val contentURI = data.data
                 val bitmap = MediaStore.Images.Media.getBitmap(activity!!.contentResolver, contentURI)
-                mainViewModel.imageSelected(bitmap)
+                mainViewModel?.imageSelected(bitmap)
                 dismiss()
             }
 
             CAMERA -> {
                 val thumbnail = data.extras?.get("data") as Bitmap //here we only get a thumbnail of a picture https://stackoverflow.com/questions/36662676/camera-image-is-too-small
-                mainViewModel.imageSelected(thumbnail)
+                mainViewModel?.imageSelected(thumbnail)
                 dismiss()
             }
         }
