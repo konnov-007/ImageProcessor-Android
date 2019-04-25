@@ -16,7 +16,7 @@ import android.content.ComponentName
 import android.graphics.drawable.ColorDrawable
 import android.view.View
 import konnov.commr.vk.imageprocessor.R
-import konnov.commr.vk.imageprocessor.screen.MainActivity
+import konnov.commr.vk.imageprocessor.screen.activity.MainActivity
 
 
 const val GALLERY = 1
@@ -89,8 +89,7 @@ private fun MainActivity.startSettings(){
 }
 
 
-fun MainActivity.permissionsResult(requestCode: Int,
-                                   permissions: Array<String>, grantResults: IntArray){
+fun MainActivity.permissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray){
     when (requestCode) {
         REQUEST_ID_MULTIPLE_PERMISSIONS -> {
             val permsMap = HashMap<String, Int>()
@@ -141,7 +140,7 @@ private fun shouldShowRequestPermissionRationale(activity: Activity) : Boolean {
 }
 
 
-fun MainActivity.showPictureDialog(){
+fun MainActivity.showPictureDialog(){//TODO rebuild it into a dialog fragment like [ItemClickDialogFragment]
     val pictureDialog = AlertDialog.Builder(this)
     pictureDialog.setTitle(resources.getString(R.string.select_action))
     val pictureDialogItems = arrayOf(resources.getString(R.string.pic_from_gallery),

@@ -6,7 +6,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import konnov.commr.vk.imageprocessor.data.source.ImageRepository
-import konnov.commr.vk.imageprocessor.screen.MainViewModel
+import konnov.commr.vk.imageprocessor.screen.activity.MainViewModel
 
 class ViewModelFactory private constructor(
     private val imageRepository: ImageRepository
@@ -21,7 +21,12 @@ class ViewModelFactory private constructor(
                     val getImage = Injection.provideGetImage(imageRepository)
                     val saveImage = Injection.provideSaveImage(imageRepository)
                     val transformImage = Injection.provideTransformImage()
-                    MainViewModel(useCaseHandler, getImage, saveImage, transformImage)
+                    MainViewModel(
+                        useCaseHandler,
+                        getImage,
+                        saveImage,
+                        transformImage
+                    )
                 }
                 else ->
                     throw IllegalArgumentException("Unknown class: ${modelClass.name}")

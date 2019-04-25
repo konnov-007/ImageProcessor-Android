@@ -1,4 +1,4 @@
-package konnov.commr.vk.imageprocessor.screen
+package konnov.commr.vk.imageprocessor.screen.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
@@ -13,6 +13,7 @@ import konnov.commr.vk.imageprocessor.R
 import konnov.commr.vk.bitmapprocessor.INVERT
 import konnov.commr.vk.bitmapprocessor.MIRROR
 import konnov.commr.vk.bitmapprocessor.ROTATE
+import konnov.commr.vk.imageprocessor.screen.itemclickdialog.ItemClickedDialogFragment
 import konnov.commr.vk.imageprocessor.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -35,7 +36,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         rotate_btn.setOnClickListener(this)
         invert_colors_btn.setOnClickListener(this)
         mirror_btn.setOnClickListener(this)
-        resultImagesAdapter = ResultImagesAdapter(itemListener = adapterItemListener)
+        resultImagesAdapter =
+            ResultImagesAdapter(itemListener = adapterItemListener)
         val linearLayoutManager = LinearLayoutManager(this)
         results_rv.layoutManager = linearLayoutManager
         results_rv.adapter = resultImagesAdapter
@@ -87,7 +89,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      */
     private val adapterItemListener = object : AdapterItemListener {
         override fun onItemClick(itemPosition: Int, bitmap: Bitmap) {
-            showMessage("clicked item $itemPosition")
+            showDialogFragment(ItemClickedDialogFragment(itemPosition, bitmap))
         }
 
     }

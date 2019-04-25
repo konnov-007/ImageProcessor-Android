@@ -1,4 +1,4 @@
-package konnov.commr.vk.imageprocessor.screen
+package konnov.commr.vk.imageprocessor.screen.activity
 
 import android.graphics.Bitmap
 import android.view.LayoutInflater
@@ -9,7 +9,8 @@ import konnov.commr.vk.imageprocessor.R
 import kotlinx.android.synthetic.main.image_item.view.*
 
 class ResultImagesAdapter(private val resultBitmaps: ArrayList<Bitmap> = ArrayList(),
-                          private val itemListener: AdapterItemListener) :
+                          private val itemListener: AdapterItemListener
+) :
     RecyclerView.Adapter<ResultImagesAdapter.ResultImageViewHolder>() {
 
     override fun getItemCount(): Int {

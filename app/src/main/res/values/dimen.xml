@@ -2,4 +2,5 @@
 <resources>
     <dimen name="screen_edge_margin">20dp</dimen>
     <dimen name="max_image_size">250dp</dimen>
+    <dimen name="dialog_width">300dp</dimen>
 </resources>

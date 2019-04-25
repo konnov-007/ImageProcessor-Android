@@ -15,4 +15,7 @@
     <string name="mandatory_permissions_warning">You need to give some mandatory permissions to continue. Do you want to go to app settings?</string>
 
     <string name="error">Error occurred</string>
+    <string name="reuse">Reuse</string>
+    <string name="delete">Delete</string>
+    <string name="what_do_you_want_to_do">What do you want to do</string>
 </resources>
