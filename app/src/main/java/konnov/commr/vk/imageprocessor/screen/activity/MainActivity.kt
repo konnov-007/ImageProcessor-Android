@@ -49,30 +49,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v) {
             input_image_button -> showDialogFragment(SelectPictureDialogFragment(mainViewModel))
-            rotate_btn -> {
-                if(imageIsSet(input_image_button.drawable)) {
-                    val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
-                    mainViewModel.transformImage(sourceBitmap, ROTATE)
-                } else {
-                    showDialogFragment(SelectPictureDialogFragment(mainViewModel))
-                }
-            }
-            invert_colors_btn -> {
-               if(imageIsSet(input_image_button.drawable)) {
-                   val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
-                   mainViewModel.transformImage(sourceBitmap, INVERT)
-               } else {
-                   showDialogFragment(SelectPictureDialogFragment(mainViewModel))
-               }
-            }
-            mirror_btn -> {
-                if(imageIsSet(input_image_button.drawable)) {
-                    val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
-                    mainViewModel.transformImage(sourceBitmap, MIRROR)
-                } else {
-                    showDialogFragment(SelectPictureDialogFragment(mainViewModel))
-                }
-            }
+            rotate_btn -> processPicture(ROTATE)
+            invert_colors_btn -> processPicture(INVERT)
+            mirror_btn -> processPicture(MIRROR)
+
+        }
+    }
+
+    private fun processPicture(transformType: Int){
+        if(imageIsSet(input_image_button.drawable)) {
+            val sourceBitmap = (input_image_button.drawable as BitmapDrawable).bitmap
+            mainViewModel.transformImage(sourceBitmap, transformType)
+        } else {
+            showDialogFragment(SelectPictureDialogFragment(mainViewModel))
         }
     }
 
