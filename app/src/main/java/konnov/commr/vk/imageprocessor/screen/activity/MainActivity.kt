@@ -11,8 +11,8 @@ import konnov.commr.vk.bitmapprocessor.INVERT
 import konnov.commr.vk.bitmapprocessor.MIRROR
 import konnov.commr.vk.bitmapprocessor.ROTATE
 import konnov.commr.vk.imageprocessor.domain.model.Image
-import konnov.commr.vk.imageprocessor.screen.itemclickdialog.ItemClickedDialogFragment
-import konnov.commr.vk.imageprocessor.screen.selectpicturedialog.SelectPictureDialogFragment
+import konnov.commr.vk.imageprocessor.screen.dialogs.ItemClickedDialogFragment
+import konnov.commr.vk.imageprocessor.screen.dialogs.SelectPictureDialogFragment
 import konnov.commr.vk.imageprocessor.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -48,7 +48,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
-            input_image_button -> showDialogFragment(SelectPictureDialogFragment(mainViewModel))
+            input_image_button -> showDialogFragment(
+                SelectPictureDialogFragment(
+                    mainViewModel
+                )
+            )
             rotate_btn -> processPicture(ROTATE)
             invert_colors_btn -> processPicture(INVERT)
             mirror_btn -> processPicture(MIRROR)
@@ -88,7 +92,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      */
     private val adapterItemListener = object : AdapterItemListener {
         override fun onItemClick(image: Image) {
-            showDialogFragment(ItemClickedDialogFragment(mainViewModel, image))
+            showDialogFragment(
+                ItemClickedDialogFragment(
+                    mainViewModel,
+                    image
+                )
+            )
         }
 
     }

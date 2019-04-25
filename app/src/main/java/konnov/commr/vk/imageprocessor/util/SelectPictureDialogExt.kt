@@ -2,7 +2,7 @@ package konnov.commr.vk.imageprocessor.util
 
 import android.content.Intent
 import android.provider.MediaStore
-import konnov.commr.vk.imageprocessor.screen.selectpicturedialog.SelectPictureDialogFragment
+import konnov.commr.vk.imageprocessor.screen.dialogs.SelectPictureDialogFragment
 
 /**
  * request codes for startActivityForResult
