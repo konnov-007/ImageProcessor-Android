@@ -50,4 +50,9 @@ class MainViewModel(
         sourceImageLiveData.value = ImageStateSuccess(bitmap)
     }
 
+    fun imageDeleted(image: Image) {
+        resultImages.remove(image)
+        resultImageLiveData.value = ResultImageStateSuccess(resultImages)
+    }
+
 }

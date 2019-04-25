@@ -11,6 +11,7 @@ import konnov.commr.vk.imageprocessor.R
 import konnov.commr.vk.bitmapprocessor.INVERT
 import konnov.commr.vk.bitmapprocessor.MIRROR
 import konnov.commr.vk.bitmapprocessor.ROTATE
+import konnov.commr.vk.imageprocessor.domain.model.Image
 import konnov.commr.vk.imageprocessor.screen.itemclickdialog.ItemClickedDialogFragment
 import konnov.commr.vk.imageprocessor.screen.selectpicturedialog.SelectPictureDialogFragment
 import konnov.commr.vk.imageprocessor.util.*
@@ -87,8 +88,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * Listening for the clicks in ResultImagesAdapter
      */
     private val adapterItemListener = object : AdapterItemListener {
-        override fun onItemClick(itemPosition: Int, bitmap: Bitmap) {
-            showDialogFragment(ItemClickedDialogFragment(itemPosition, bitmap))
+        override fun onItemClick(image: Image) {
+            showDialogFragment(ItemClickedDialogFragment(mainViewModel, image))
         }
 
     }

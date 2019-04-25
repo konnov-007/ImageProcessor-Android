@@ -1,7 +1,7 @@
 package konnov.commr.vk.imageprocessor.screen.activity
 
-import android.graphics.Bitmap
+import konnov.commr.vk.imageprocessor.domain.model.Image
 
 interface AdapterItemListener {
-    fun onItemClick(itemPosition: Int, bitmap: Bitmap)
+    fun onItemClick(image: Image)
 }

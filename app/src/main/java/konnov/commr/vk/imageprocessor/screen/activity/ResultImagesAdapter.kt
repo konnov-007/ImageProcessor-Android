@@ -27,7 +27,7 @@ class ResultImagesAdapter(private var resultImages: ArrayList<Image> = ArrayList
     override fun onBindViewHolder(resultImageViewHolder: ResultImageViewHolder, position: Int) {
         resultImageViewHolder.image.setImageBitmap(resultImages[position].bitmap)
         resultImageViewHolder.image.setOnClickListener {
-            itemListener.onItemClick(position, resultImages[position].bitmap)
+            itemListener.onItemClick(resultImages[position])
         }
     }
 
